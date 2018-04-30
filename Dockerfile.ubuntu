@@ -2,13 +2,16 @@ ARG VERSION_ID
 FROM ubuntu:${VERSION_ID}
 
 # packaging dependencies
-RUN apt-get update && apt-get install -y --no-install-recommends \
+RUN apt-get update && apt-get install -y \
         dh-make \
         fakeroot \
         build-essential \
         devscripts \
         lsb-release && \
     rm -rf /var/lib/apt/lists/*
+
+RUN apt-get update
+RUN apt-get install -y vim git python wget sudo
 
 # packaging
 ARG PKG_VERS
